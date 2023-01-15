@@ -17,15 +17,15 @@ sections:
       title: Skills
       items:
         - name: R
-          description: 90%
+          description: 10+ years
           icon: r-project
           icon_pack: fab
         - name: Population genomics
-          description: 100%
+          description: 4+ years, non-model diatoms
           icon: chart-line
           icon_pack: fas
         - name: Diatom taxonomy
-          description: 10%
+          description: 10+ years, Freshwater and Marine
           icon: camera-retro
           icon_pack: fas
   - block: experience
