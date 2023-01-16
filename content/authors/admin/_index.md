@@ -13,7 +13,7 @@ status:
 superuser: true
 
 design:
-  columns: '1'
+  columns: 2
   view: 2
 
 
