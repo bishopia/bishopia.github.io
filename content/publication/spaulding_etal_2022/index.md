@@ -25,7 +25,7 @@ abstract: Consistent identification of diatoms is a prerequisite for studying th
 
 #tags:
 #- Source Themes
-featured: true
+featured: false
 
 # links:
 # - name: ""

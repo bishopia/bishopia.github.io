@@ -25,7 +25,7 @@ abstract: Despite the potential of standing genetic variation to rescue communit
 tags:
 - Source Themes
 
-featured: true
+featured: false
 
 # links:
 # - name: ""
