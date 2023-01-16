@@ -12,6 +12,11 @@ status:
 # Is this the primary user of the site?
 superuser: true
 
+design:
+  columns: '1'
+  view: 2
+
+
 # Role/position/tagline
 role: Ph.D. Candidate
 
@@ -29,17 +34,11 @@ interests:
   - Diatom taxonomy
 
 # Education to show in About widget
-education:
-  courses:
-    - course: PhD in Artificial Intelligence
-      institution: Stanford University
-      year: 2012
-    - course: MEng in Artificial Intelligence
-      institution: Massachusetts Institute of Technology
-      year: 2009
-    - course: BSc in Artificial Intelligence
-      institution: Massachusetts Institute of Technology
-      year: 2008
+#education:
+#  courses:
+#    - course: PhD in Artificial Intelligence
+#      institution: Stanford University
+#      year: 2012
 
 # Social/Academic Networking
 # For available icons, see: https://wowchemy.com/docs/getting-started/page-builder/#icons
