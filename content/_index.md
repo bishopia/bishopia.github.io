@@ -1,7 +1,7 @@
 ---
 # Leave the homepage title empty to use the site title
 title:
-date: 2022-10-24
+date: 2023-1-16
 type: landing
 
 sections:
@@ -27,6 +27,10 @@ sections:
         - name: Diatom taxonomy
           description: 10+ years, Freshwater and Marine
           icon: camera-retro
+          icon_pack: fas
+        - name: bash
+          description: 5+ years
+          icon: chart-line
           icon_pack: fas
   - block: experience
     content:
