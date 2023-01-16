@@ -12,26 +12,26 @@ sections:
       username: admin
       # Override your bio text from `authors/admin/_index.md`?
       text:
-  - block: features
-    content:
-      title: Skills
-      items:
-        - name: R
-          description: 10+ years
-          icon: r-project
-          icon_pack: fab
-        - name: Population genomics
-          description: 4+ years, non-model diatoms
-          icon: chart-line
-          icon_pack: fas
-        - name: Diatom taxonomy
-          description: 10+ years, Freshwater and Marine
-          icon: camera-retro
-          icon_pack: fas
-        - name: bash
-          description: 5+ years
-          icon: chart-line
-          icon_pack: fas
+ # - block: features
+ #   content:
+ #     title: Skills
+ #     items:
+ #       - name: R
+ #         description: 10+ years
+ #         icon: r-project
+ #         icon_pack: fab
+ #       - name: Population genomics
+ #         description: 4+ years, non-model diatoms
+ #         icon: chart-line
+ #         icon_pack: fas
+ #       - name: Diatom taxonomy
+ #         description: 10+ years, Freshwater and Marine
+ #         icon: camera-retro
+ #         icon_pack: fas
+ #       - name: bash
+ #         description: 5+ years
+ #         icon: chart-line
+ #         icon_pack: fas
 #  - block: experience
 #    content:
 #      title: Experience
