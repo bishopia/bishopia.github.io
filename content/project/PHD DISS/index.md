@@ -1,15 +1,15 @@
 ---
-title: Example Project
-summary: An example of using the in-built project page.
+title: The Adaptive potential of Southern Ocean diatoms
+summary: My dissertation research centers on the genomic and physiological variation that shapes evolutionary potential in cold-adapted Southern Ocean diatoms. 
 tags:
-  - Deep Learning
-date: '2016-04-27T00:00:00Z'
+  - Dissertation
+date: '2023-01-10T00:00:00Z'
 
 # Optional external URL for project (replaces project detail page).
 external_link: ''
 
 image:
-  caption: Photo by rawpixel on Unsplash
+  caption: Photo by Celia Gelfman
   focal_point: Smart
 
 links:
