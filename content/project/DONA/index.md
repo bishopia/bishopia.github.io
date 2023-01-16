@@ -1,5 +1,5 @@
 ---
-title: Diatoms of North America
+title: Diatoms of North America (DONA)
 summary: Peer-reviewed, community-driven North American diatom taxonomy
 tags:
   - taxonomy
