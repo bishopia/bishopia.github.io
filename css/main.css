@@ -1,3 +1,8 @@
+.text-container {
+    background-color: #dbca7c; /* Or any contrasting color */
+    opacity: 0.8; /* You can adjust the opacity */
+    padding: 15px; /* Add padding for better spacing */
+}
 body {
     margin: 60px auto;
     width: 70%;
@@ -45,10 +50,4 @@ ul.posts {
 
 ul.posts li {
     list-style: none;
-}
-
-.text-container {
-    background-color: #dbca7c; /* Or any contrasting color */
-    opacity: 0.8; /* You can adjust the opacity */
-    padding: 15px; /* Add padding for better spacing */
 }
