@@ -1,6 +1,11 @@
 body {
     margin: 60px auto;
     width: 70%;
+    background-image: url('/assets/ne_stream_2022.jpg');
+    background-size: cover; /* This ensures the image covers the whole page */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Optional: makes the background fixed during scroll */
 }
 nav ul, footer ul {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
