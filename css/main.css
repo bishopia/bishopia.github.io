@@ -46,3 +46,7 @@ ul.posts {
 ul.posts li {
     list-style: none;
 }
+    
+.blurb {
+    margin-bottom: 50px; /* Adjust the value as needed */
+}
