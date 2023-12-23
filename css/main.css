@@ -5,6 +5,13 @@
     padding: 15px;
 }
 
+.bottom-text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: left; /* Right-align the text */
+}
+
 .text-content {
     flex-grow: 1;
     /* Add additional styling as needed */
