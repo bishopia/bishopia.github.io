@@ -1,8 +1,9 @@
 .text-container {
-    background-color: #dbca7c; /* Or any contrasting color */
-    opacity: 0.8; /* You can adjust the opacity */
+    background-color: rgba(219, 202, 124, 0.8); /* Semi-transparent background */
     padding: 15px; /* Add padding for better spacing */
+    /* Other styles... */
 }
+
 body {
     margin: 60px auto;
     width: 70%;
