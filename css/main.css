@@ -1,7 +1,17 @@
 .text-container {
+    display: flex;
+    align-items: flex-start;
     background-color: rgba(219, 202, 124, 0.8); /* Semi-transparent background */
-    padding: 15px; /* Add padding for better spacing */
-    /* Other styles... */
+    padding: 15px;
+}
+
+.text-content {
+    flex-grow: 1;
+    /* Add additional styling as needed */
+}
+
+.image-content {
+    /* Styling for the image container, adjust as needed */
 }
 
 body {
