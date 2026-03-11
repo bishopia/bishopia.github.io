@@ -70,14 +70,14 @@ ul.posts li {
     list-style: none;
 }
 
-/* Make navbar links bigger, darker, and bolder */
+/* Navbar links for dark/mottled background */
 nav ul li a {
-    font-size: 1.3em;        /* Bigger text */
+    font-size: 1.6em;        /* Bigger text */
     font-weight: 600;        /* Semi-bold */
-    color: #222 !important;  /* Darker grey / near black */
+    color: #f5f5f5 !important;  /* Light off-white */
 }
 
 nav ul li a:hover {
-    color: #000 !important;  /* Darker on hover */
-    text-decoration: underline; /* Optional: underline on hover */
+    color: #ffffff !important;  /* Brighter on hover */
+    text-decoration: underline;  /* Optional hover underline */
 }
