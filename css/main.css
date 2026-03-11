@@ -4,7 +4,7 @@
     background-color: rgba(219, 202, 124, 0.8); /* Semi-transparent background */
     border: 2px solid #000;   /* Black border, 2px thick */
     padding: 15px;
-    border-radius: 5px;       /* Optional: rounded corners */
+    border-radius: 10px;       /* Optional: rounded corners */
 }
 
 .bottom-text {
