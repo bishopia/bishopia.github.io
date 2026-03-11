@@ -58,9 +58,12 @@ p {
     line-height: 1.4em;
     color: #333;
 }
+/* Footer adjustments */
 footer {
-    border-top: 1px solid #d5d5d5;
-    font-size: .8em;
+    border-top: none;        /* Remove the light line */
+    font-size: 1em;          /* Slightly bigger text */
+    color: #ffffff;          /* White text */
+    text-align: center;      /* Optional: center the text */
 }
 
 ul.posts { 
