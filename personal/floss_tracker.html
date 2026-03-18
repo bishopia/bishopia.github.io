@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Floss Tracker</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f4f7f4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 20px 40px;
+      color: #1a2e1a;
+    }
+    h1 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #2d5a2d;
+      margin-bottom: 4px;
+    }
+    .date-display { font-size: 0.8rem; color: #7a967a; margin-bottom: 36px; }
+    .stats-row {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      max-width: 360px;
+      margin-bottom: 36px;
+    }
+    .stat-card {
+      flex: 1;
+      background: white;
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
+      border: 1px solid #e0ebe0;
+    }
+    .stat-value { font-size: 1.8rem; font-weight: 700; color: #2d5a2d; line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 0.7rem; color: #7a967a; text-transform: uppercase; letter-spacing: 0.05em; }
+    .floss-btn {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #2d5a2d;
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.1s, background 0.1s;
+      box-shadow: 0 4px 24px rgba(45,90,45,0.25);
+    }
+    .floss-btn:active { transform: scale(0.94); background: #1e3e1e; }
+    .btn-icon { font-size: 2.4rem; line-height: 1; }
+    .btn-text { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .confirm-msg {
+      font-size: 0.85rem;
+      color: #3a7a3a;
+      font-weight: 500;
+      height: 20px;
+      margin-bottom: 28px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .confirm-msg.show { opacity: 1; }
+    .history-section { width: 100%; max-width: 360px; }
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .history-title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #7a967a; }
+    .btn-row { display: flex; gap: 8px; align-items: center; }
+    .export-btn {
+      font-size: 0.72rem;
+      color: #2d5a2d;
+      background: none;
+      border: 1px solid #b0d0b0;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 4px 10px;
+    }
+    .clear-btn { font-size: 0.72rem; color: #c0392b; background: none; border: none; cursor: pointer; padding: 4px 0; opacity: 0.7; }
+    .history-list { display: flex; flex-direction: column; gap: 8px; }
+    .history-item {
+      background: white;
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #e0ebe0;
+    }
+    .history-date { font-size: 0.85rem; font-weight: 500; color: #1a2e1a; }
+    .history-time { font-size: 0.8rem; color: #7a967a; }
+    .history-dot { width: 8px; height: 8px; border-radius: 50%; background: #2d5a2d; opacity: 0.4; }
+    .empty-msg { text-align: center; color: #7a967a; font-size: 0.85rem; padding: 20px 0; }
+  </style>
+</head>
+<body>
+
+  <h1>Floss Tracker</h1>
+  <div class="date-display" id="today-display"></div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-value" id="streak-val">0</div>
+      <div class="stat-label">Day streak</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="week-val">0</div>
+      <div class="stat-label">This week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="total-val">0</div>
+      <div class="stat-label">All time</div>
+    </div>
+  </div>
+
+  <button class="floss-btn" onclick="logFloss()">
+    <span class="btn-icon">&#10003;</span>
+    <span class="btn-text">Flossed!</span>
+  </button>
+
+  <div class="confirm-msg" id="confirm-msg">Logged!</div>
+
+  <div class="history-section">
+    <div class="history-header">
+      <span class="history-title">History</span>
+      <div class="btn-row">
+        <button class="export-btn" onclick="exportCSV()">Export CSV</button>
+        <button class="clear-btn" onclick="clearAll()">Clear all</button>
+      </div>
+    </div>
+    <div class="history-list" id="history-list"></div>
+  </div>
+
+  <script>
+    var KEY = 'floss_log';
+
+    function getLog() {
+      try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+      catch(e) { return []; }
+    }
+
+    function saveLog(log) {
+      localStorage.setItem(KEY, JSON.stringify(log));
+    }
+
+    function logFloss() {
+      var log = getLog();
+      log.unshift(new Date().toISOString());
+      saveLog(log);
+      var msg = document.getElementById('confirm-msg');
+      msg.classList.add('show');
+      setTimeout(function() { msg.classList.remove('show'); }, 2000);
+      render();
+    }
+
+    function clearAll() {
+      if (confirm('Clear all floss history?')) {
+        saveLog([]);
+        render();
+      }
+    }
+
+    function exportCSV() {
+      var log = getLog();
+      if (!log.length) { alert('No data to export yet.'); return; }
+      var rows = ['datetime_utc,datetime_local'];
+      for (var i = 0; i < log.length; i++) {
+        var local = new Date(log[i]).toLocaleString('en-US');
+        rows.push(log[i] + ',"' + local + '"');
+      }
+      var blob = new Blob([rows.join('\n')], { type: 'text/csv' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'floss_log.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function toDay(iso) {
+      var d = new Date(iso);
+      return d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+    }
+
+    function calcStreak(log) {
+      if (!log.length) return 0;
+      var days = [];
+      for (var i = 0; i < log.length; i++) {
+        var day = toDay(log[i]);
+        if (days.indexOf(day) === -1) days.push(day);
+      }
+      var today = toDay(new Date().toISOString());
+      var yesterday = toDay(new Date(Date.now() - 86400000).toISOString());
+      if (days[0] !== today && days[0] !== yesterday) return 0;
+      var streak = 1;
+      for (var j = 1; j < days.length; j++) {
+        var a = new Date(log.filter(function(x) { return toDay(x) === days[j-1]; })[0]);
+        var b = new Date(log.filter(function(x) { return toDay(x) === days[j]; })[0]);
+        if (Math.round((a - b) / 86400000) === 1) streak++;
+        else break;
+      }
+      return streak;
+    }
+
+    function calcWeek(log) {
+      var cutoff = Date.now() - 7 * 86400000;
+      var count = 0;
+      for (var i = 0; i < log.length; i++) {
+        if (new Date(log[i]).getTime() >= cutoff) count++;
+      }
+      return count;
+    }
+
+    function formatDate(iso) {
+      var d = new Date(iso);
+      var today = new Date();
+      var yesterday = new Date(Date.now() - 86400000);
+      if (d.toDateString() === today.toDateString()) return 'Today';
+      if (d.toDateString() === yesterday.toDateString()) return 'Yesterday';
+      return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    }
+
+    function formatTime(iso) {
+      return new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    }
+
+    function render() {
+      var log = getLog();
+      document.getElementById('streak-val').textContent = calcStreak(log);
+      document.getElementById('week-val').textContent = calcWeek(log);
+      document.getElementById('total-val').textContent = log.length;
+      var list = document.getElementById('history-list');
+      if (!log.length) {
+        list.innerHTML = '<div class="empty-msg">No entries yet — tap the button!</div>';
+        return;
+      }
+      var html = '';
+      for (var i = 0; i < log.length; i++) {
+        html += '<div class="history-item">' +
+          '<div class="history-date">' + formatDate(log[i]) + '</div>' +
+          '<div class="history-time">' + formatTime(log[i]) + '</div>' +
+          '<div class="history-dot"></div>' +
+          '</div>';
+      }
+      list.innerHTML = html;
+    }
+
+    document.getElementById('today-display').textContent =
+      new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+
+    render();
+  </script>
+</body>
+</html>
